@@ -1,14 +1,11 @@
 const { expect } = require("chai");
+const acceptCookies = require("../../acceptCookies.js");
 
 describe("Search fields", () => {
-  it('"To", "Depart", "Return" fields should be empty by default', async () => {
+  it("To, Depart, Return fields should be empty by default", async () => {
     await browser.url("https://www.jetblue.com/");
     await browser.maximizeWindow();
-    const acceptCookiesFrame = await $("//iframe[@class='truste_popframe']");
-    await acceptCookiesFrame.waitForDisplayed(10000);
-    await browser.switchToFrame(acceptCookiesFrame);
-    const acceptCookiesButton = await $(".call");
-    await acceptCookiesButton.click();
+    await acceptCookies();
     const inputForDestinationCity = await $("#jb-autocomplete-2-search");    
     await inputForDestinationCity.waitForDisplayed(10000);
     const inputForDepartureDate = await $("#jb-date-picker-input-id-0");
