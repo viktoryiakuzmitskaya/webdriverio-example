@@ -5,12 +5,12 @@ describe("Search fields", () => {
     await browser.url("https://www.jetblue.com/");
     await browser.maximizeWindow();
     const acceptCookiesFrame = await $("//iframe[@class='truste_popframe']");
-    await acceptCookiesFrame.waitForDisplayed(3000);
+    await acceptCookiesFrame.waitForDisplayed(10000);
     await browser.switchToFrame(acceptCookiesFrame);
     const acceptCookiesButton = await $(".call");
     await acceptCookiesButton.click();
     const inputForDestinationCity = await $("#jb-autocomplete-2-search");    
-    await inputForDestinationCity.waitForDisplayed(2000);
+    await inputForDestinationCity.waitForDisplayed(10000);
     const inputForDepartureDate = await $("#jb-date-picker-input-id-0");
     const inputForReturnDate = await $("#jb-date-picker-input-id-1");
     expect(await inputForDestinationCity.getValue()).to.be.equal("");

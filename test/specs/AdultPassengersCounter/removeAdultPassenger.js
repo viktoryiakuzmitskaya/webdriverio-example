@@ -5,12 +5,12 @@ describe("Adult passengers counter", () => {
     await browser.url("https://www.jetblue.com/");
     await browser.maximizeWindow();
     const acceptCookiesFrame = await $("//iframe[@class='truste_popframe']");
-    await acceptCookiesFrame.waitForDisplayed(3000);
+    await acceptCookiesFrame.waitForDisplayed(10000);
     await browser.switchToFrame(acceptCookiesFrame);
     const acceptCookiesButton = await $(".call");
     await acceptCookiesButton.click();
     const travelersDropdownTrigger = await $('button[title="Travelers"]'); 
-    await travelersDropdownTrigger.waitForDisplayed(2000);
+    await travelersDropdownTrigger.waitForDisplayed(10000);
     await travelersDropdownTrigger.click();
     const adultPassengersCounter = await $('jb-incrementer[decreaselabel="remove adult"]');    
     const initialAdultPassengersAmount = await ((adultPassengersCounter.$('span').getText()));    
