@@ -1,6 +1,6 @@
 const { expect } = require("chai");
 
-describe("Search", () => {
+describe("Flight search", () => {
   it('should show error messages if required fields are empty', async () => {
     await browser.url("https://www.jetblue.com/");
     await browser.maximizeWindow();

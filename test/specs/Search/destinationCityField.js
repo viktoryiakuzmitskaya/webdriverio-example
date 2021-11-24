@@ -1,6 +1,6 @@
 const { expect } = require("chai");
 
-describe("'To' field", () => {
+describe("Destination city field", () => {
   it("should preserve destination city value after receiving no results and navigating back in browser", async () => {
     await browser.url("https://www.jetblue.com/");
     await browser.maximizeWindow();

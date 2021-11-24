@@ -9,7 +9,8 @@ describe("Search fields", () => {
     await browser.switchToFrame(acceptCookiesFrame);
     const acceptCookiesButton = await $(".call");
     await acceptCookiesButton.click();
-    const inputForDestinationCity = await $("#jb-autocomplete-2-search");
+    const inputForDestinationCity = await $("#jb-autocomplete-2-search");    
+    await inputForDestinationCity.waitForDisplayed(2000);
     const inputForDepartureDate = await $("#jb-date-picker-input-id-0");
     const inputForReturnDate = await $("#jb-date-picker-input-id-1");
     expect(await inputForDestinationCity.getValue()).to.be.equal("");
