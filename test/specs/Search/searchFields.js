@@ -1,17 +1,15 @@
 const { expect } = require("chai");
-const acceptCookies = require("../../acceptCookies.js");
+const HomePage = require("../../pages/home.page");
 
 describe("Search fields", () => {
   it("To, Depart, Return fields should be empty by default", async () => {
-    await browser.url("https://www.jetblue.com/");
-    await browser.maximizeWindow();
-    await acceptCookies();
-    const inputForDestinationCity = await $("#jb-autocomplete-2-search");    
-    await inputForDestinationCity.waitForDisplayed(10000);
-    const inputForDepartureDate = await $("#jb-date-picker-input-id-0");
-    const inputForReturnDate = await $("#jb-date-picker-input-id-1");
-    expect(await inputForDestinationCity.getValue()).to.be.equal("");
-    expect(await inputForDepartureDate.getValue()).to.be.equal("");
-    expect(await inputForReturnDate.getValue()).to.be.equal("");
+    await HomePage.open("https://www.jetblue.com/");
+    await HomePage.acceptCookies();
+    const inputForDestinationCityValue = await HomePage.inputForDestinationCity.getValue();
+    const inputForDepartureDateValue = await HomePage.inputForDepartureDate.getValue();
+    const inputForReturnDateValue = await HomePage.inputForReturnDate.getValue();
+    expect(inputForDestinationCityValue).to.be.equal("");
+    expect(inputForDepartureDateValue).to.be.equal("");
+    expect(inputForReturnDateValue).to.be.equal("");
   });
 });
