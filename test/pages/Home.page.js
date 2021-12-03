@@ -28,7 +28,22 @@ class HomePage extends Page {
   get errorForEmptyReturnDate() {
     return $("#jb-error-id-1");
   } 
-
+  get travelersDropdownTrigger() {
+    return $('button[title="Travelers"]');
+  } 
+  get adultPassengersCalculator() {
+    return $('jb-incrementer[increaselabel="add adult"]');
+  }
+  get adultPassengersIncrementButton() {
+    return this.adultPassengersCalculator.$('button[aria-label="add adult"]');
+  }
+  get adultPassengersDecrementButton() {
+    return this.adultPassengersCalculator.$('button[aria-label="remove adult"]');
+  }
+  get adultPassengersCounter() {
+    return this.adultPassengersCalculator.$('span');
+  }
+  
   async acceptCookies() {
     const acceptCookiesFrame = await this.acceptCookiesFrame;
     await this.acceptCookiesFrame.waitForDisplayed(10000);
