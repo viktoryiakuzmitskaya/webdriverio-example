@@ -16,6 +16,18 @@ class HomePage extends Page {
   get inputForReturnDate() {
     return $("#jb-date-picker-input-id-1");
   }
+  get searchButton() {
+    return $(".jb-booker-air-submit");
+  }
+  get errorForEmptyDestinationCity() {
+    return $("#jb-error-id-4");
+  }   
+  get errorForEmptyDepartureDate() {
+    return $("#jb-error-id-0");
+  } 
+  get errorForEmptyReturnDate() {
+    return $("#jb-error-id-1");
+  } 
 
   async acceptCookies() {
     const acceptCookiesFrame = await this.acceptCookiesFrame;
