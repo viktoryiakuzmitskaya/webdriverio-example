@@ -5,18 +5,15 @@ describe("Destination city field", () => {
   it("should preserve only destination city value after receiving no results and navigating back in browser", async () => {
     await HomePage.open("https://www.jetblue.com/");
     await HomePage.acceptCookies();
-  //   const inputForDestinationCity = await $("#jb-autocomplete-2-search");
-  //   await inputForDestinationCity.waitForDisplayed(10000);
-  //   const inputForDepartureDate = await $("#jb-date-picker-input-id-0");
-  //   const inputForReturnDate = await $("#jb-date-picker-input-id-1");
-  //   await inputForDestinationCity.addValue("Dubrovnik, Croatia (DBV)");
-  //   const destinationCity = await $("strong*=Dubrovnik, Croatia (DBV)");
-  //   await destinationCity.waitForDisplayed(10000);
-  //   await destinationCity.click();
-  //   await inputForDepartureDate.addValue("Sun Feb 27");
-  //   await inputForReturnDate.addValue("Mon Feb 28");
-  //   const searchButton = await $(".jb-booker-air-submit");
-  //   await searchButton.click();
+    await HomePage.inputForDestinationCity.setValue("Dubrovnik, Croatia (DBV)");
+    await HomePage.destinationCitySuggestedOption.click();
+    await HomePage.inputForDepartureDate.setValue("Sun Feb 27");
+    await HomePage.inputForReturnDate.setValue("Mon Feb 28");
+    await HomePage.searchButton.click();
+    await browser.pause(3000);
+    // const destinationCity = await $("strong*=Dubrovnik, Croatia (DBV)");
+    // await destinationCity.waitForDisplayed(10000);
+    // await destinationCity.click();
   //   const noFlightsFoundMessage = await $(
   //     "h2*=No flights have been found for your search criteria."
   //   );

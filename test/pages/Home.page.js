@@ -8,7 +8,10 @@ class HomePage extends Page {
     return $(".call");
   }
   get inputForDestinationCity() {
-    return $("#jb-autocomplete-2-search");
+    return $("jb-autocomplete[data-qaid='autocomplete-city-selector'] input#jb-autocomplete-2-search");
+  }
+  get destinationCitySuggestedOption(){
+    return $("jb-autocomplete[data-qaid='autocomplete-city-selector'] strong");
   }
   get inputForDepartureDate() {
     return $("#jb-date-picker-input-id-0");
@@ -43,6 +46,7 @@ class HomePage extends Page {
   get adultPassengersCounter() {
     return this.adultPassengersCalculator.$('span');
   }
+  
   
   async acceptCookies() {
     const acceptCookiesFrame = await this.acceptCookiesFrame;
