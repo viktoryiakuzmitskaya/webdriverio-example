@@ -54,6 +54,12 @@ class HomePage extends Page {
     await browser.switchToFrame(acceptCookiesFrame);
     await this.acceptCookiesButton.click();
   }
+
+  async waitForInputToDisplayPreviouslyEnteredData(input) {
+    await input.waitUntil(async function () {
+        return (await this.getValue()) != "";
+      });
+  }
 }
 
 module.exports = new HomePage();
