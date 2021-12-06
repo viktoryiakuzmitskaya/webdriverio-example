@@ -1,17 +1,20 @@
 const { expect } = require("chai");
-const HomePage = require("../../pages/home.page");
+const HomePage = require("../../pageObjects/pages/home.page");
 
 describe("Flight search", () => {
   it("should show error messages if required fields are empty", async () => {
     await HomePage.open("https://www.jetblue.com/");
     await HomePage.acceptCookies();
-    await HomePage.searchButton.click();
+    await HomePage.waitForElement(
+      HomePage.searchForm.searchButton, 5000
+    );
+    await HomePage.searchForm.searchButton.click();
     const errorMessageForEmptyDestinationCity =
-      await HomePage.errorForEmptyDestinationCity.getText();
+      await HomePage.searchForm.errorForEmptyDestinationCity.getText();
     const errorMessageForEmptyDepartureDate =
-      await HomePage.errorForEmptyDepartureDate.getText();
+      await HomePage.searchForm.errorForEmptyDepartureDate.getText();
     const errorMessageForEmptyReturnDate =
-      await HomePage.errorForEmptyReturnDate.getText();
+      await HomePage.searchForm.errorForEmptyReturnDate.getText();
     expect(errorMessageForEmptyDestinationCity).to.be.equal(
       "Please enter a valid city."
     );
