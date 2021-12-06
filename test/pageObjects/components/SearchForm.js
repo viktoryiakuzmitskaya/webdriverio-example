@@ -1,7 +1,6 @@
 class SearchForm {
   get inputForDestinationCity() {
-    return $(
-      "jb-autocomplete[data-qaid='autocomplete-city-selector'] input#jb-autocomplete-2-search"
+    return $("input#jb-autocomplete-2-search"
     );
   }
   get destinationCitySuggestedOption() {
