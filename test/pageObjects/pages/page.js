@@ -10,10 +10,9 @@ class Page {
     await element.waitForDisplayed(milliseconds);
   }
   async highlightElement(element) {
-    const elementInitialBackgroundColor = await element.getCSSProperty('backgroundColor');
-    console.log(elementInitialBackgroundColor);
-    await browser.execute("arguments[0].style.backgroundColor = '" + "red" + "'", element);
-    await browser.pause(2000);
+    const elementInitialBackgroundColor = (await element.getCSSProperty('backgroundColor')).value;
+    await browser.execute("arguments[0].style.backgroundColor = '" + "yellow" + "'", element);
+    await browser.pause(1000);
     await browser.execute("arguments[0].style.backgroundColor = '" + elementInitialBackgroundColor + "'", element);
   }
 }

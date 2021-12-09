@@ -37,7 +37,7 @@ class SearchForm {
   }
 
   async emulateUserTypingValueIntoInput(inputCoordinates) {
-    const moveToInputByCoordinates = generateMoveToElementByCoordinatesActionObject(inputCoordinates)
+    const moveToInputByCoordinates = generateMoveToElementByCoordinatesActionObject(inputCoordinates);
     await browser.performActions([
       moveToInputByCoordinates, 
       startTypingDestinationCityValue,

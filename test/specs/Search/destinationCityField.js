@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const HomePage = require("../../pageObjects/pages/Home.page");
 const SelectFlightsPage = require("../../pageObjects/pages/SelectFlights.page");
 
-describe.skip("Destination city field", () => {
+describe("Destination city field", () => {
   it("should preserve destination city value after receiving no results and navigating back in browser", async () => {
     await HomePage.open("https://www.jetblue.com/");
     await HomePage.acceptCookies();

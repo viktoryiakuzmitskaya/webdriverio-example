@@ -13,7 +13,8 @@ describe("AutoSuggestion", () => {
         await HomePage.highlightElement(inputForDestinationCity);      
         const inputForDestinationCityCoordinates = await HomePage.searchForm.getInputCoordinates(inputForDestinationCity);
         await HomePage.searchForm.emulateUserTypingValueIntoInput(inputForDestinationCityCoordinates);
-        const destinationCitySuggestedOptionText = await HomePage.searchForm.destinationCitySuggestedOption.getText(); 
+        const destinationCitySuggestedOption = await HomePage.searchForm.destinationCitySuggestedOption;
+        const destinationCitySuggestedOptionText = await destinationCitySuggestedOption.getText(); 
         await browser.pause(5000);
         expect(destinationCitySuggestedOptionText).to.be.equal("Dubro");
       });
