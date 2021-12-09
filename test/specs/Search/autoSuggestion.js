@@ -9,10 +9,11 @@ describe("AutoSuggestion", () => {
           HomePage.searchForm.searchButton, 5000
         );
         const inputForDestinationCity = await HomePage.searchForm
-        .inputForDestinationCity;
+        .inputForDestinationCity;  
+        await HomePage.highlightElement(inputForDestinationCity);      
         const inputForDestinationCityCoordinates = await HomePage.searchForm.getInputCoordinates(inputForDestinationCity);
         await HomePage.searchForm.emulateUserTypingValueIntoInput(inputForDestinationCityCoordinates);
-        const destinationCitySuggestedOptionText = await HomePage.searchForm.destinationCitySuggestedOption.getText();    
+        const destinationCitySuggestedOptionText = await HomePage.searchForm.destinationCitySuggestedOption.getText(); 
         await browser.pause(5000);
         expect(destinationCitySuggestedOptionText).to.be.equal("Dubro");
       });

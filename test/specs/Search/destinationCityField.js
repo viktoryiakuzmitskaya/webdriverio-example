@@ -21,7 +21,6 @@ describe.skip("Destination city field", () => {
     await HomePage.waitForInputToDisplayPreviouslyEnteredData(
       HomePage.searchForm.inputForDestinationCity
     );
-    await browser.pause(3000);
     expect(await HomePage.searchForm.inputForDestinationCity.getValue()).to.be.equal(
       "Dubrovnik, Croatia (DBV)"
     );
