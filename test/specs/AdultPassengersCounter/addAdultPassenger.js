@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const HomePage = require("../../pageObjects/pages/home.page");
 
-describe("Adult passengers counter", () => {
+describe.skip("Adult passengers counter", () => {
   it("should increase the amount by 1 with click on '+' button", async () => {
     await HomePage.open("https://www.jetblue.com/");
     await HomePage.acceptCookies();

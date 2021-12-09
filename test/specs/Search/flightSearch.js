@@ -1,7 +1,7 @@
 const { expect } = require("chai");
 const HomePage = require("../../pageObjects/pages/home.page");
 
-describe("Flight search", () => {
+describe.skip("Flight search", () => {
   it("should show error messages if required fields are empty", async () => {
     await HomePage.open("https://www.jetblue.com/");
     await HomePage.acceptCookies();
