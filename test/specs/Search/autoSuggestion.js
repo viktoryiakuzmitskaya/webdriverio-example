@@ -7,12 +7,9 @@ describe("AutoSuggestion", () => {
         await HomePage.acceptCookies();
         await HomePage.waitForElement(
           HomePage.searchForm.searchButton, 5000
-        );
-        const inputForDestinationCity = await HomePage.searchForm
-        .inputForDestinationCity;  
-        await HomePage.highlightElement(inputForDestinationCity);      
-        const inputForDestinationCityCoordinates = await HomePage.searchForm.getInputCoordinates(inputForDestinationCity);
-        await HomePage.searchForm.emulateUserTypingValueIntoInput(inputForDestinationCityCoordinates);
+        );  
+        await HomePage.searchForm.inputForDestinationCity.highlightElement(); 
+        await HomePage.searchForm.inputForDestinationCity.emulateUserTypingValueIntoInput();
         const destinationCitySuggestedOption = await HomePage.searchForm.destinationCitySuggestedOption;
         const destinationCitySuggestedOptionText = await destinationCitySuggestedOption.getText(); 
         await browser.pause(5000);

@@ -22,16 +22,7 @@ class Page {
       } catch(Error) {
           logger.error(`Element is not displayed- ${Error}`); 
       };
-    }
-    
-  async highlightElement(element) {
-    logger.info(`Highlighting the element`);
-    const elementInitialBackgroundColor = (await element.getCSSProperty('backgroundColor')).value;
-    logger.debug(`Intial background of highlighted element is "${elementInitialBackgroundColor}"`);
-    await browser.execute("arguments[0].style.backgroundColor = '" + "yellow" + "'", element);
-    await browser.pause(1000);
-    await browser.execute("arguments[0].style.backgroundColor = '" + elementInitialBackgroundColor + "'", element);
-  }
+    }    
 }
 
 module.exports = Page;

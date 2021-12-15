@@ -1,21 +1,20 @@
-const Button = require("../baseElements/Button");
-const Counter = require("../baseElements/Counter");
+const BaseElement = require("../baseElements/BaseElement");
 
 class TravelersSelector {
   constructor(componentName) {
     this.componentName = componentName;
   }
   get travelersDropdownTrigger() {
-    return new Button("Travelers Dropdown Trigger", 'button[title="Travelers"]');
+    return new BaseElement("Travelers Dropdown Trigger", 'button[title="Travelers"]');
   }
   get adultPassengersCounter() {
-    return new Counter("Adult Passengers Counter", 'jb-incrementer[increaselabel="add adult"] span');
+    return new BaseElement("Adult Passengers Counter", 'jb-incrementer[increaselabel="add adult"] span');
   }
   get adultPassengersIncrementButton() {
-    return new Button("Adult Passengers Increment Button", 'button[aria-label="add adult"]');
+    return new BaseElement("Adult Passengers Increment Button", 'button[aria-label="add adult"]');
   }
   get adultPassengersDecrementButton() {
-    return new Button("Adult Passengers Decrement Button", 
+    return new BaseElement("Adult Passengers Decrement Button", 
       'button[aria-label="remove adult"]'
     );
   }

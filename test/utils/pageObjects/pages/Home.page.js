@@ -1,7 +1,7 @@
 const logger = require("../../../config/logger.config");
 const Page = require("./page");
 const SearchForm = require("../components/SearchForm");
-const Button = require("../baseElements/Button");
+const BaseElement = require("../baseElements/BaseElement");
 const TravelersSelector = require("../components/TravelersSelector");
 
 class HomePage extends Page {
@@ -9,7 +9,7 @@ class HomePage extends Page {
     return $("//iframe[@class='truste_popframe']");
   }
   get acceptCookiesButton() {
-    return new Button("Accept Cookies Button", ".call");
+    return new BaseElement("Accept Cookies Button", ".call");
   }
   get searchForm() {
     return new SearchForm("Search Form");
