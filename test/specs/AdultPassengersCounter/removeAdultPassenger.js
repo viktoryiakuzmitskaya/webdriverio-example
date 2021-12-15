@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const HomePage = require("../../pageObjects/pages/home.page");
+const HomePage = require("../../utils/pageObjects/pages/Home.page");
 
 describe("Adult passengers counter", () => {
   it("should decrease the amount by 1 with click on '-' button", async () => {

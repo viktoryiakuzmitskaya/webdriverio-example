@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const HomePage = require("../../pageObjects/pages/home.page");
+const HomePage = require("../../utils/pageObjects/pages/Home.page");
 
 describe("AutoSuggestion", () => {
     it("Relevant autosuggestion option is displayed for 'To' field when user types in the value", async () => {

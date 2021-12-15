@@ -1,6 +1,6 @@
 const { expect } = require("chai");
-const HomePage = require("../../pageObjects/pages/Home.page");
-const SelectFlightsPage = require("../../pageObjects/pages/SelectFlights.page");
+const HomePage = require("../../utils/pageObjects/pages/Home.page");
+const SelectFlightsPage = require("../../utils/pageObjects/pages/SelectFlights.page");
 
 describe("Destination city field", () => {
   it("should preserve destination city value after receiving no results and navigating back in browser", async () => {

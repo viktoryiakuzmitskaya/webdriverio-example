@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const HomePage = require("../../pageObjects/pages/home.page");
+const HomePage = require("../../utils/pageObjects/pages/Home.page");
 
 describe("Flight search", () => {
   it("should show error messages if required fields are empty", async () => {

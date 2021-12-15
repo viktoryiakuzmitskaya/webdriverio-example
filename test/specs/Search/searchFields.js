@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const HomePage = require("../../pageObjects/pages/home.page");
+const HomePage = require("../../utils/pageObjects/pages/Home.page");
 
 describe("Search fields", () => {
   it("To, Depart, Return fields should be empty by default", async () => {
