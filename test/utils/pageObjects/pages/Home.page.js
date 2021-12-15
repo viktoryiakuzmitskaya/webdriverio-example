@@ -25,12 +25,6 @@ class HomePage extends Page {
     await this.acceptCookiesButton.click();
     logger.info(`Cookies are accepted`);
   }
-
-  async waitForInputToDisplayPreviouslyEnteredData(input) {
-    await input.waitUntil(async function () {
-      return (await this.getValue()) != "";
-    });
-  }
 }
 
 module.exports = new HomePage();

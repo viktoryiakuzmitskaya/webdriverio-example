@@ -18,7 +18,7 @@ describe("Destination city field", () => {
       SelectFlightsPage.noFlightsFoundMessage, 10000
     );
     await SelectFlightsPage.goBack();
-    await HomePage.waitForInputToDisplayPreviouslyEnteredData(
+    await HomePage.searchForm.waitForInputToBeNotEmpty(
       HomePage.searchForm.inputForDestinationCity
     );
     expect(await HomePage.searchForm.inputForDestinationCity.getValue()).to.be.equal(
