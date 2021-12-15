@@ -1,5 +1,7 @@
+const logger = require("../../../config/logger.config");
 const Page = require("./page");
 const SearchForm = require("../components/SearchForm");
+const Button = require("../baseElements/Button");
 const TravelersSelector = require("../components/TravelersSelector");
 
 class HomePage extends Page {
@@ -7,13 +9,13 @@ class HomePage extends Page {
     return $("//iframe[@class='truste_popframe']");
   }
   get acceptCookiesButton() {
-    return $(".call");
+    return new Button("Accept Cookies Button", ".call");
   }
   get searchForm() {
-    return new SearchForm();
+    return new SearchForm("Search Form");
   }
   get travelersSelector() {
-    return new TravelersSelector();
+    return new TravelersSelector("Travelers Selector");
   }
 
   async acceptCookies() {
@@ -21,6 +23,7 @@ class HomePage extends Page {
     await this.acceptCookiesFrame.waitForDisplayed(10000);
     await browser.switchToFrame(acceptCookiesFrame);
     await this.acceptCookiesButton.click();
+    logger.info(`Cookies are accepted`);
   }
 
   async waitForInputToDisplayPreviouslyEnteredData(input) {

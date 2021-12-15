@@ -1,7 +1,12 @@
+const logger = require("../../../config/logger.config");
+const Button = require("../baseElements/Button");
 const startTypingDestinationCityValue = require("../../userActions/startTypingDestinationCityValue");
 const generateMoveToElementByCoordinatesActionObject = require("../../userActions/generateMoveToElementByCoordinatesActionObject");
 
 class SearchForm {
+  constructor(componentName) {
+    this.componentName = componentName;
+  }
   get inputForDestinationCity() {
     return $("input#jb-autocomplete-2-search");
   }
@@ -15,7 +20,7 @@ class SearchForm {
     return $("#jb-date-picker-input-id-1");
   }
   get searchButton() {
-    return $(".jb-booker-air-submit");
+    return new Button("Search Button", ".jb-booker-air-submit");
   }
   get errorForEmptyDestinationCity() {
     return $("#jb-error-id-4");
@@ -33,6 +38,7 @@ class SearchForm {
       x: Math.round(inputLocation.x),
       y: Math.round(inputLocation.y),
     };
+    logger.debug(`Input coordinates are (${inputCoordinates.x}, ${inputCoordinates.y})`);
     return inputCoordinates;
   }
 
@@ -42,6 +48,7 @@ class SearchForm {
       moveToInputByCoordinates, 
       startTypingDestinationCityValue,
     ]);
+    logger.info(`Destination city value was typed in the input with coordinates (${inputCoordinates.x}, ${inputCoordinates.y}) `);
   }
 }
 
