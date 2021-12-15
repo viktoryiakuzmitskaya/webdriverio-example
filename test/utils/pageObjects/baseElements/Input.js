@@ -11,14 +11,13 @@ class Input extends BaseElement{
   }  
 
   async emulateUserTypingValueIntoInput() {
-    //const input = await this.getElement();
     const inputCoordinates = await this.getElementCoordinates();
     const moveToInputByCoordinates = generateMoveToElementByCoordinatesActionObject(inputCoordinates);
     await browser.performActions([
       moveToInputByCoordinates, 
       startTypingDestinationCityValue,
     ]);
-    logger.info(`Destination city value was typed in the input with coordinates (${inputCoordinates.x}, ${inputCoordinates.y}) `);
+    logger.info(`Destination city value was typed in the input "${this.elementName}" with coordinates (${inputCoordinates.x}, ${inputCoordinates.y}) `);
   }
 }
 

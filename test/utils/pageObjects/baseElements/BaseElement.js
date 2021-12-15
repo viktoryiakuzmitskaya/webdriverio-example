@@ -5,21 +5,6 @@ class BaseElement {
     this.elementName = elementName;
     this.selector = selector;
   }
-
-  async getElement() {
-    try {
-      this.element = await browser.$(this.selector);
-      if (this.element) {
-        logger.info(`Element "${this.elementName}" is displayed`);
-        return this.element;
-      } else {
-        logger.error(`Element "${this.elementName}" is not displayed`);
-      }
-    } catch (Error) {
-      logger.error(`Element "${this.elementName}" is not displayed - ${Error}`);
-    }
-  }  
-
   async click() {
     await this.getElement();
     logger.info(`Clicking "${this.elementName}"`);
@@ -44,19 +29,35 @@ class BaseElement {
     await this.getElement();
     logger.info(`Setting "${value}" value to "${this.elementName}" element`);
     return this.element.setValue(value);
-  }  
+  }
 
   async highlightElement() {
     await this.getElement();
-    logger.info(`Highlighting the element`);
-    const elementInitialBackgroundColor = (await this.element.getCSSProperty('backgroundColor')).value;
-    logger.debug(`Intial background color of element "${this.elementName}" is "${elementInitialBackgroundColor}"`);
-    await browser.execute("arguments[0].style.backgroundColor = '" + "yellow" + "'", this.element);
-    logger.debug(`Current background color of element "${this.elementName}" is yellow`);
+    logger.info(`Highlighting the element "${this.elementName}"`);
+    const elementInitialBackgroundColor = (
+      await this.element.getCSSProperty("backgroundColor")
+    ).value;
+    logger.debug(
+      `Intial background color of element "${this.elementName}" is "${elementInitialBackgroundColor}"`
+    );
+    await browser.execute(
+      "arguments[0].style.backgroundColor = '" + "yellow" + "'",
+      this.element
+    );
+    logger.debug(
+      `Current background color of element "${this.elementName}" is yellow`
+    );
     await browser.pause(1000);
-    logger.debug(`Initial background color of element "${this.elementName}" is returned`);
-    await browser.execute("arguments[0].style.backgroundColor = '" + elementInitialBackgroundColor + "'", this.element);
-  } 
+    logger.debug(
+      `Initial background color of element "${this.elementName}" is returned`
+    );
+    await browser.execute(
+      "arguments[0].style.backgroundColor = '" +
+        elementInitialBackgroundColor +
+        "'",
+      this.element
+    );
+  }
 
   async getElementCoordinates() {
     await this.getElement();
@@ -65,10 +66,26 @@ class BaseElement {
       x: Math.round(elementLocation.x),
       y: Math.round(elementLocation.y),
     };
-    logger.debug(`Element coordinates are (${elementCoordinates.x}, ${elementCoordinates.y})`);
+    logger.debug(
+      `Element coordinates are (${elementCoordinates.x}, ${elementCoordinates.y})`
+    );
     return elementCoordinates;
   }
 
+  async getElement() {
+    try {
+      this.element = await browser.$(this.selector);
+      const isElementDisplayed = await this.element.waitForDisplayed(10000);
+      if (isElementDisplayed) {
+        logger.info(`Element "${this.elementName}" is displayed`);
+        return this.element;
+      } else {
+        logger.error(`Element "${this.elementName}" is not displayed`);
+      }
+    } catch (Error) {
+      logger.error(`Element "${this.elementName}" is not displayed - ${Error}`);
+    }
+  }
 }
 
 module.exports = BaseElement;

@@ -5,9 +5,6 @@ describe("Adult passengers counter", () => {
   it("should increase the amount by 1 with click on '+' button", async () => {
     await HomePage.open("https://www.jetblue.com/");
     await HomePage.acceptCookies();
-    await HomePage.waitForElement(
-      HomePage.travelersSelector.travelersDropdownTrigger, 5000
-    );
     await HomePage.travelersSelector.travelersDropdownTrigger.click();
     const initialAdultPassengersAmount = Number(
       await HomePage.travelersSelector.adultPassengersCounter.getText()
