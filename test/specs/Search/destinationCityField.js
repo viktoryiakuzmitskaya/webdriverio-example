@@ -1,35 +1,22 @@
 const { expect } = require("chai");
-const acceptCookies = require("../../acceptCookies.js");
+const HomePage = require("../../utils/pageObjects/pages/Home.page");
+const SelectFlightsPage = require("../../utils/pageObjects/pages/SelectFlights.page");
 
 describe("Destination city field", () => {
-  it("should preserve only destination city value after receiving no results and navigating back in browser", async () => {
-    await browser.url("https://www.jetblue.com/");
-    await browser.maximizeWindow();
-    await acceptCookies();
-    const inputForDestinationCity = await $("#jb-autocomplete-2-search");
-    await inputForDestinationCity.waitForDisplayed(10000);
-    const inputForDepartureDate = await $("#jb-date-picker-input-id-0");
-    const inputForReturnDate = await $("#jb-date-picker-input-id-1");
-    await inputForDestinationCity.addValue("Dubrovnik, Croatia (DBV)");
-    const destinationCity = await $("strong*=Dubrovnik, Croatia (DBV)");
-    await destinationCity.waitForDisplayed(10000);
-    await destinationCity.click();
-    await inputForDepartureDate.addValue("Tue Nov 30");
-    await inputForReturnDate.addValue("Wed Dec 1");
-    const searchButton = await $(".jb-booker-air-submit");
-    await searchButton.click();
-    const noFlightsFoundMessage = await $(
-      "h2*=No flights have been found for your search criteria."
+  it("should preserve destination city value after receiving no results and navigating back in browser", async () => {
+    await HomePage.open("https://www.jetblue.com/");
+    await HomePage.acceptCookies();
+    await HomePage.searchForm.inputForDestinationCity.setValue("Dubrovnik, Croatia (DBV)");
+    await HomePage.searchForm.destinationCitySuggestedOption.click();
+    await HomePage.searchForm.inputForDepartureDate.setValue("Sun Feb 27");
+    await HomePage.searchForm.inputForReturnDate.setValue("Mon Feb 28");
+    await HomePage.searchForm.searchButton.click();
+    await SelectFlightsPage.goBack();
+    await HomePage.searchForm.waitForSearchInputToBeNotEmpty(
+      HomePage.searchForm.inputForDestinationCity
     );
-    await noFlightsFoundMessage.waitForDisplayed(10000);
-    await browser.back();
-    await inputForDestinationCity.waitUntil(async function () {
-      return (await this.getValue()) != "";
-    });
-    expect(await inputForDestinationCity.getValue()).to.be.equal(
+    expect(await HomePage.searchForm.inputForDestinationCity.getValue()).to.be.equal(
       "Dubrovnik, Croatia (DBV)"
     );
-    expect(await inputForDepartureDate.getValue()).to.be.equal("");
-    expect(await inputForReturnDate.getValue()).to.be.equal("");
   });
 });

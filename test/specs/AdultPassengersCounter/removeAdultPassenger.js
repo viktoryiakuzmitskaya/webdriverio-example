@@ -1,18 +1,20 @@
 const { expect } = require("chai");
-const acceptCookies = require("../../acceptCookies.js");
+const HomePage = require("../../utils/pageObjects/pages/Home.page");
 
 describe("Adult passengers counter", () => {
-  it("should decrease the amount by 1 with click on '-' button", async () => {    
-    await browser.url("https://www.jetblue.com/");
-    await browser.maximizeWindow();await acceptCookies();
-    const travelersDropdownTrigger = await $('button[title="Travelers"]'); 
-    await travelersDropdownTrigger.waitForDisplayed(10000);
-    await travelersDropdownTrigger.click();
-    const adultPassengersCounter = await $('jb-incrementer[decreaselabel="remove adult"]');    
-    const initialAdultPassengersAmount = await ((adultPassengersCounter.$('span').getText()));    
-    const adultPassengersDecrementButton = await adultPassengersCounter.$('button[aria-label="remove adult"]');
-    await adultPassengersDecrementButton.click();
-    const newAdultPassengersAmount = await adultPassengersCounter.$('span').getText();
-    expect((Number(initialAdultPassengersAmount)-Number(newAdultPassengersAmount))).to.be.equal(1);
+  it("should decrease the amount by 1 with click on '-' button", async () => {
+    await HomePage.open("https://www.jetblue.com/");
+    await HomePage.acceptCookies();
+    await HomePage.travelersSelector.travelersDropdownTrigger.click();
+    const initialAdultPassengersAmount = Number(
+      await HomePage.travelersSelector.adultPassengersCounter.getText()
+    );
+    await HomePage.travelersSelector.adultPassengersDecrementButton.click();
+    const newAdultPassengersAmount = Number(
+      await HomePage.travelersSelector.adultPassengersCounter.getText()
+    );
+    expect(initialAdultPassengersAmount - newAdultPassengersAmount).to.be.equal(
+      1
+    );
   });
 });
