@@ -1,13 +1,10 @@
 const { expect } = require("chai");
-const HomePage = require("../../pageObjects/pages/home.page");
+const HomePage = require("../../utils/pageObjects/pages/Home.page");
 
 describe("Flight search", () => {
   it("should show error messages if required fields are empty", async () => {
     await HomePage.open("https://www.jetblue.com/");
     await HomePage.acceptCookies();
-    await HomePage.waitForElement(
-      HomePage.searchForm.searchButton, 5000
-    );
     await HomePage.searchForm.searchButton.click();
     const errorMessageForEmptyDestinationCity =
       await HomePage.searchForm.errorForEmptyDestinationCity.getText();
