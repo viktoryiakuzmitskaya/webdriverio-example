@@ -1,3 +1,5 @@
+const argv = require('yargs').argv;
+
 exports.config = {
   //
   // ====================
@@ -20,11 +22,11 @@ exports.config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ["./test/specs/**/*.js"],
+  specs: argv.folderToRun ? [`./test/specs/${argv.folderToRun}/**/*.js`] : ['./test/specs/**/*.js'],
   // Patterns to exclude.
-  exclude: [
-    // 'path/to/excluded/files'
-  ],
+  // exclude: [
+  //   
+  // ],
   //
   // ============
   // Capabilities
@@ -41,7 +43,7 @@ exports.config = {
   // and 30 processes will get spawned. The property handles how many capabilities
   // from the same test should run tests.
   //
-  maxInstances: 1,
+  //maxInstances: ,
   //
   // If you have trouble getting all important capabilities together, check out the
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -52,7 +54,7 @@ exports.config = {
       // maxInstances can get overwritten per capability. So if you have an in-house Selenium
       // grid with only 5 firefox instances available you can make sure that not more than
       // 5 instances get started at a time.
-      maxInstances: 1,
+      maxInstances: argv.instances || 1,
       //
       browserName: "chrome",
       acceptInsecureCerts: true,
