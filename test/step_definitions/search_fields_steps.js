@@ -1,5 +1,5 @@
 const { When, Then } = require("@wdio/cucumber-framework");
-const HomePage = require("../../utils/pageObjects/pages/Home.page");
+const HomePage = require("../utils/pageObjects/pages/Home.page");
 const { expect } = require('chai');
 
 When("I click Search Button", function() {

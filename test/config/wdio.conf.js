@@ -22,7 +22,7 @@ exports.config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ['./test/bdd/features/*.feature'],
+  specs: ['./test/features/*.feature'],
   // Patterns to exclude.
   // exclude: [
   //   
@@ -142,7 +142,7 @@ exports.config = {
   reporters: ["spec"],
   //
   cucumberOpts: {
-    require: ['./test/bdd/step_definitions/*.js']
+    require: ['./test/step_definitions/*.js']
   }
   // =====
   // Hooks
