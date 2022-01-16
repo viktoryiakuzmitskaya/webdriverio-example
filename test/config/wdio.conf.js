@@ -139,7 +139,15 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: ["spec", 
+    ["json",{
+        outputDir: './reports',
+        outputFileFormat: function() {
+          const currentDate = new Date();          
+          return `test report ${currentDate.toDateString()}.json`
+      }
+    }]
+  ],
   //
   cucumberOpts: {
     require: ['./test/step_definitions/*.js']

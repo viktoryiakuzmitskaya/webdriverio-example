@@ -33,6 +33,7 @@
         "@wdio/spec-reporter": "^7.16.9",
         "chromedriver": "^96.0.0",
         "geckodriver": "^2.0.4",
-        "wdio-chromedriver-service": "^7.2.2"
+        "wdio-chromedriver-service": "^7.2.2",
+        "wdio-json-reporter": "^3.0.0"
     }
 }
