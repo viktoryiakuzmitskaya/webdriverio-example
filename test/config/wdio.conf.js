@@ -22,7 +22,7 @@ exports.config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: argv.folderToRun ? [`./test/specs/${argv.folderToRun}/**/*.js`] : ['./test/specs/**/*.js'],
+  specs: ['./test/bdd/features/*.feature'],
   // Patterns to exclude.
   // exclude: [
   //   
@@ -125,7 +125,7 @@ exports.config = {
   //
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
-  framework: "mocha",
+  framework: "cucumber",
   //
   // The number of times to retry the entire specfile when it fails as a whole
   // specFileRetries: 1,
@@ -140,15 +140,10 @@ exports.config = {
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: ["spec"],
-
   //
-  // Options to be passed to Mocha.
-  // See the full list at http://mochajs.org/
-  mochaOpts: {
-    ui: "bdd",
-    timeout: 200000,
-  },
-  //
+  cucumberOpts: {
+    require: ['./test/bdd/step_definitions/*.js']
+  }
   // =====
   // Hooks
   // =====
