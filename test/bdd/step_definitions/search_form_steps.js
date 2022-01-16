@@ -7,12 +7,13 @@ When("I click Search Button", function() {
 });
 
 Then("Error messages for empty Destination City, Departure Date, Return Date fields are displayed", async function() {
-    const errorMessageForEmptyDestinationCity =
-    await HomePage.searchForm.errorForEmptyDestinationCity.getText();
+  const SearchForm = HomePage.searchForm;  
+  const errorMessageForEmptyDestinationCity =
+    await SearchForm.errorForEmptyDestinationCity.getText();
   const errorMessageForEmptyDepartureDate =
-    await HomePage.searchForm.errorForEmptyDepartureDate.getText();
+    await SearchForm.errorForEmptyDepartureDate.getText();
   const errorMessageForEmptyReturnDate =
-    await HomePage.searchForm.errorForEmptyReturnDate.getText();
+    await SearchForm.errorForEmptyReturnDate.getText();
   expect(errorMessageForEmptyDestinationCity).to.be.equal(
     "Please enter a valid city."
   );
