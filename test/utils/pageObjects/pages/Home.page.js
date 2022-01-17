@@ -2,7 +2,6 @@ const logger = require("../../../config/logger.config");
 const Page = require("./page");
 const SearchForm = require("../components/SearchForm");
 const BaseElement = require("../baseElements/BaseElement");
-const TravelersSelector = require("../components/TravelersSelector");
 
 class HomePage extends Page {
   get acceptCookiesFrame() {
@@ -13,9 +12,6 @@ class HomePage extends Page {
   }
   get searchForm() {
     return new SearchForm("Search Form");
-  }
-  get travelersSelector() {
-    return new TravelersSelector("Travelers Selector");
   }
 
   async acceptCookies() {

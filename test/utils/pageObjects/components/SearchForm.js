@@ -1,4 +1,3 @@
-const logger = require("../../../config/logger.config");
 const BaseElement = require("../baseElements/BaseElement");
 const Input = require("../baseElements/Input");
 
@@ -8,9 +7,6 @@ class SearchForm {
   }
   get inputForDestinationCity() {
     return new Input("Destination City Input", "input#jb-autocomplete-2-search");
-  }
-  get destinationCitySuggestedOption() {
-    return new BaseElement("Destination City Autosuggestion Option", "jb-autocomplete[data-qaid='autocomplete-city-selector'] strong");
   }
   get inputForDepartureDate() {
     return new Input("Departure Date Input", "#jb-date-picker-input-id-0");
@@ -31,12 +27,6 @@ class SearchForm {
     return new BaseElement("Error For Empty Return Date", "#jb-error-id-1");
   }
 
-  async waitForSearchInputToBeNotEmpty(input) {
-    await browser.waitUntil(async function () {
-      logger.info(`Waiting for input "${input.elementName}" to be not empty`);
-      return (await input.getValue()) != "";
-    });
-  }
 }
 
 module.exports = SearchForm;

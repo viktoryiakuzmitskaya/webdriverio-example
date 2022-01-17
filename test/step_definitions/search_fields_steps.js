@@ -1,6 +1,7 @@
-const { When, Then } = require("@wdio/cucumber-framework");
+const { When, Then, setDefaultTimeout } = require("@wdio/cucumber-framework");
 const HomePage = require("../utils/pageObjects/pages/Home.page");
 const { expect } = require('chai');
+setDefaultTimeout(60000);
 
 When("I click Search Button", function() {
   return HomePage.searchForm.searchButton.click();
