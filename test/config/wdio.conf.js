@@ -141,10 +141,9 @@ exports.config = {
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: ["spec", 
     ["json",{
-        outputDir: './reports',
-        outputFileFormat: function() {
-          const currentDate = new Date();          
-          return `test report ${currentDate.toDateString()}.json`
+        outputDir: "./reports",
+        outputFileFormat: function() {        
+          return "test_report_webdriverio.json"
       }
     }]
   ],
