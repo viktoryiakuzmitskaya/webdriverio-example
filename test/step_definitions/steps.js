@@ -1,4 +1,5 @@
-const { Given, When, Then, setDefaultTimeout } = require("@wdio/cucumber-framework");
+const { Given, When, Then, setDefaultTimeout, After } = require("@wdio/cucumber-framework");
+const cucumberJson = require("wdio-cucumberjs-json-reporter").default;
 const HomePage = require("../utils/pageObjects/pages/Home.page");
 const { expect } = require('chai');
 setDefaultTimeout(60000);
@@ -43,4 +44,9 @@ Then("Error messages for empty Destination City, Departure Date, Return Date fie
   expect(errorMessageForEmptyReturnDate).to.be.equal(
     "Please enter a valid date."
   );
+});
+
+After({timeout: 60000}, async function () {  
+ const screenshot = await browser.takeScreenshot();
+  cucumberJson.attach(screenshot, "image/png");
 });

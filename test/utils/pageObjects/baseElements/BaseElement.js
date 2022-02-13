@@ -75,7 +75,7 @@ class BaseElement {
   async getElement() {
     try {
       this.element = await browser.$(this.selector);
-      const isElementDisplayed = await this.element.waitForDisplayed(10000);
+      const isElementDisplayed = await this.element.waitForDisplayed(60000);
       if (isElementDisplayed) {
         logger.info(`Element "${this.elementName}" is displayed`);
         return this.element;

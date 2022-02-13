@@ -1,4 +1,6 @@
 const argv = require('yargs').argv;
+const { generate } = require("multiple-cucumber-html-reporter");
+const { removeSync } = require('fs-extra');
 
 exports.config = {
   //
@@ -68,6 +70,16 @@ exports.config = {
           "--disable-gpu"
         ],
       },
+      'cjson:metadata': {
+        browser: {
+          name: "chrome",
+          version: "98"
+        },
+        platform: {
+          name: "Windows",
+          version: "10"
+        }
+      }
     },
   ],
   //
@@ -104,7 +116,7 @@ exports.config = {
   //baseUrl:,
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 10000,
+  waitforTimeout: 60000,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
@@ -140,17 +152,14 @@ exports.config = {
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
   reporters: ["spec", 
-    ["json",{
-        outputDir: "./reports",
-        outputFileFormat: function() {        
-          return "test_report_webdriverio.json"
-      }
+    ["cucumberjs-json",{
+        jsonFolder: "./reports"
     }]
   ],
   //
   cucumberOpts: {
     require: ['./test/step_definitions/*.js']
-  }
+  },
   // =====
   // Hooks
   // =====
@@ -163,8 +172,9 @@ exports.config = {
    * @param {Object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {
-  // },
+  onPrepare: () => {
+    removeSync("./reports");
+  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialise specific service
    * for that worker as well as modify runtime environments in an async fashion.
@@ -236,6 +246,7 @@ exports.config = {
    * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
    */
   // afterTest: function(test, context, { error, result, duration, passed, retries }) {
+  //   cucumberJson.attach(browser.takeScreenshot(), 'image/png');
   // },
 
   /**
@@ -278,8 +289,12 @@ exports.config = {
    * @param {Array.<Object>} capabilities list of capabilities details
    * @param {<Object>} results object containing test results
    */
-  // onComplete: function(exitCode, config, capabilities, results) {
-  // },
+  onComplete: () => {
+    generate({
+      jsonDir: "./reports",
+      reportPath: "./reports"
+    });
+  }
   /**
    * Gets executed when a refresh happens.
    * @param {String} oldSessionId session ID of the old session
