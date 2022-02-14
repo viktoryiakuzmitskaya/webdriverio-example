@@ -1,6 +1,6 @@
-const argv = require('yargs').argv;
+const argv = require("yargs").argv;
 const { generate } = require("multiple-cucumber-html-reporter");
-const { removeSync } = require('fs-extra');
+const { removeSync } = require("fs-extra");
 
 exports.config = {
   //
@@ -24,10 +24,10 @@ exports.config = {
   // then the current working directory is where your `package.json` resides, so `wdio`
   // will be called from there.
   //
-  specs: ['./test/features/*.feature'],
+  specs: ["./test/features/*.feature"],
   // Patterns to exclude.
   // exclude: [
-  //   
+  //
   // ],
   //
   // ============
@@ -64,22 +64,19 @@ exports.config = {
       // it is possible to configure which logTypes to include/exclude.
       // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
       // excludeDriverLogs: ['bugreport', 'server'],
-      'goog:chromeOptions': {
-        args: [
-          "--disable-notifications",
-          "--disable-gpu"
-        ],
+      "goog:chromeOptions": {
+        args: ["--disable-notifications", "--disable-gpu"],
       },
-      'cjson:metadata': {
+      "cjson:metadata": {
         browser: {
           name: "chrome",
-          version: "98"
+          version: "98",
         },
         platform: {
           name: "Windows",
-          version: "10"
-        }
-      }
+          version: "10",
+        },
+      },
     },
   ],
   //
@@ -151,14 +148,27 @@ exports.config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec", 
-    ["cucumberjs-json",{
-        jsonFolder: "./reports"
-    }]
+  reporters: [
+    "spec",
+    [
+      "cucumberjs-json",
+      {
+        jsonFolder: "./reports",
+      },
+    ],
+    [
+      "junit",
+      {
+        outputDir: "./reports",
+        outputFileFormat: function () {
+          return "junit_report.xml";
+      }
+      },
+    ],
   ],
   //
   cucumberOpts: {
-    require: ['./test/step_definitions/*.js']
+    require: ["./test/step_definitions/*.js"]
   },
   // =====
   // Hooks
@@ -292,9 +302,9 @@ exports.config = {
   onComplete: () => {
     generate({
       jsonDir: "./reports",
-      reportPath: "./reports"
+      reportPath: "./reports",
     });
-  }
+  },
   /**
    * Gets executed when a refresh happens.
    * @param {String} oldSessionId session ID of the old session
